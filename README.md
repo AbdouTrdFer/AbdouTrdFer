@@ -6,16 +6,13 @@
 ⚙️ DevOps enthusiast (Docker • CI/CD • System Design)  
 
 ---
-
 ## 🔥 About Me
 
 - 💡 I love turning ideas into real-world applications  
 - 🧠 Always learning: AI, system design & scalable architectures  
-- 🛠 I build full-stack apps with clean and maintainable code  
 - 🚀 I enjoy solving complex problems and optimizing systems  
 
 ---
-
 ## 🛠 Tech Stack
 
 ### 💻 Backend
@@ -30,13 +27,10 @@ Machine Learning • Deep Learning • Computer Vision
 ### ⚙️ DevOps
 Docker • Docker Compose • Nginx • CI/CD  
 
----
-
+--
 ## 📂 Featured Projects
 
 - 🍽 Restaurant Ordering System (Real-time + Laravel + Docker)  
 - 🤖 AI Chatbot (NLP + Firebase)  
 - 📚 E-learning Platform (Full-stack Laravel)  
 - 🧩 Microservices Architecture (Docker + Nginx scaling)  
-
----
