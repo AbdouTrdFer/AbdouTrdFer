@@ -28,4 +28,3 @@
 
 🤝 Let’s Collaborate!  
 👯 I’m open to collaboration on exciting projects & freelance opportunities  
-💼 Always interested in innovative startups, SaaS ideas & real-world impact solutions  
