@@ -4,7 +4,6 @@
 ---
 
 🚀 About Me  
-💡 I turn ideas into real-world, scalable applications  
 🧠 Always learning: AI, system design & software architecture  
 ⚙️ Passionate about building efficient and optimized systems  
 🤖 Exploring AI-powered solutions & intelligent systems  
