@@ -32,15 +32,6 @@ Docker • Docker Compose • Nginx • CI/CD
 
 ---
 
-## 🚀 What I'm Working On
-
-- 🔹 Building real-time applications  
-- 🔹 Integrating AI into web systems  
-- 🔹 Improving DevOps workflows  
-- 🔹 Designing scalable backend architectures  
-
----
-
 ## 📂 Featured Projects
 
 - 🍽 Restaurant Ordering System (Real-time + Laravel + Docker)  
@@ -49,23 +40,3 @@ Docker • Docker Compose • Nginx • CI/CD
 - 🧩 Microservices Architecture (Docker + Nginx scaling)  
 
 ---
-
-## 📊 GitHub Stats
-
-![stats](https://github-readme-stats.vercel.app/api?username=AbdouTrdFer&show_icons=true)
-
-![langs](https://github-readme-stats.vercel.app/api/top-langs/?username=AbdouTrdFer&layout=compact)
-
----
-
-## 🎯 Mindset
-
-> "I don't just write code — I build systems."
-
----
-
-## 📫 Connect with me
-
-- 🌐 Portfolio: abdoutrdfer.github.io/portfolio  
-- 💼 LinkedIn: (add it)  
-- 📧 Email: ferhanabdelali@gmail.com  
