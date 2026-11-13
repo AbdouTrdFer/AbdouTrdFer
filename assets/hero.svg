@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="430" viewBox="0 0 1000 430" role="img" aria-labelledby="title">
+<title id="title">Abdelali Ferhan — Thoughtful interfaces. Intelligent systems.</title>
+<style>text{font-family:Arial,Helvetica,sans-serif} .mono{font-family:Consolas,monospace} @media(prefers-reduced-motion:reduce){*{animation:none!important}}</style>
+<defs>
+      <pattern id="grid" width="36" height="36" patternUnits="userSpaceOnUse"><path d="M 36 0 L 0 0 0 36" fill="none" stroke="#263c35" stroke-width=".5"/></pattern>
+      <radialGradient id="glow"><stop stop-color="#29472d"/><stop offset="1" stop-color="#0b1514"/></radialGradient>
+      <linearGradient id="cube" x2="1" y2="1"><stop stop-color="#c9ff98"/><stop offset="1" stop-color="#67b98e"/></linearGradient>
+    </defs>
+    <style>@keyframes orbit{to{transform:rotate(360deg)}}@keyframes breathe{50%{opacity:.3}}.orbit{transform-origin:792px 207px;animation:orbit 24s linear infinite}.reverse{animation-direction:reverse;animation-duration:12s}.pulse{animation:breathe 4s ease-in-out infinite}</style>
+    <rect width="1000" height="430" rx="20" fill="#0b1514"/>
+    <circle cx="792" cy="207" r="207" fill="url(#glow)"/>
+    <path d="M608 20H980V410H608Z" fill="url(#grid)" opacity=".6"/>
+    <rect x=".5" y=".5" width="999" height="429" rx="20" fill="none" stroke="#263c35"/>
+    <rect x="38" y="31" width="34" height="34" rx="10" fill="#bdff83"/>
+    <text x="45" y="54" fill="#0b1514" font-size="20" font-weight="700" >af</text><text x="85" y="53" fill="#eef5ee" font-size="13" font-weight="700" letter-spacing="2">ABDELALI FERHAN</text>
+    <circle cx="758" cy="49" r="4" fill="#bdff83" class="pulse"/>
+    <text x="772" y="53" fill="#a3b8ac" font-size="11" font-weight="400" class="mono" letter-spacing="1">OPEN TO COLLABORATE</text>
+    <text x="38" y="113" fill="#bdff83" font-size="12" font-weight="400" class="mono" letter-spacing="1.6">FULL-STACK SOFTWARE ENGINEER</text>
+    <text x="35" y="180" fill="#eef5ee" font-size="60" font-weight="700" letter-spacing="-2">Thoughtful</text>
+    <text x="35" y="246" fill="#eef5ee" font-size="60" font-weight="700" letter-spacing="-2">interfaces.</text>
+    <text x="35" y="312" fill="#bdff83" font-size="48" font-weight="700" letter-spacing="-1.8">Intelligent systems.</text>
+    <text x="38" y="350" fill="#a3b8ac" font-size="16" font-weight="400" >From the first interaction to the services behind it.</text>
+    <line x1="38" y1="378" x2="962" y2="378" stroke="#263c35"/>
+    <text x="38" y="405" fill="#a3b8ac" font-size="11" font-weight="400" class="mono" letter-spacing="1.4">WEB APPLICATIONS  /  AI  /  DEVOPS</text>
+    <text x="962" y="405" fill="#bdff83" font-size="12" font-weight="400" class="mono" text-anchor="end">@AbdouTrdFer</text>
+    <circle cx="792" cy="207" r="131" fill="none" stroke="#263c35"/>
+    <circle cx="792" cy="207" r="97" fill="none" stroke="#3e5c46" stroke-dasharray="3 8"/>
+    <g class="orbit"><ellipse cx="792" cy="207" rx="151" ry="58" fill="none" stroke="#92be87" stroke-width="1.5" transform="rotate(-33 792 207)"/><circle cx="919" cy="125" r="7" fill="#bdff83"/></g>
+    <g class="orbit reverse"><ellipse cx="792" cy="207" rx="151" ry="58" fill="none" stroke="#588879" transform="rotate(38 792 207)"/><circle cx="671" cy="113" r="5" fill="#8acdcc"/></g>
+    <path d="M792 142L853 177V247L792 282L731 247V177Z" fill="#101f1c" stroke="#bdff83" stroke-width="1.5"/>
+    <path d="M792 142L853 177L792 213L731 177Z" fill="url(#cube)"/>
+    <path d="M792 213V282M731 177L792 213L853 177" fill="none" stroke="#bdff83" stroke-width="1.5"/>
+    <text x="748" y="236" fill="#bdff83" font-size="29" font-weight="700" >a</text><text x="809" y="236" fill="#bdff83" font-size="29" font-weight="700" >f</text>
+    <rect x="687" y="324" width="210" height="26" rx="13" fill="#101f1c" stroke="#263c35"/>
+    <text x="792" y="341" fill="#a3b8ac" font-size="10" font-weight="400" text-anchor="middle" class="mono" letter-spacing="2">CURIOUS BY DEFAULT</text>
+    </svg>
