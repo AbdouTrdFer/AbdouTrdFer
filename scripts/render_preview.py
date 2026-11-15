@@ -16,7 +16,7 @@ ROOT=Path(__file__).resolve().parents[1]
 def make_gif(page, name, width, height, duration, frames):
     source=(ROOT/f'assets/{name}.svg').read_text(encoding='utf-8')
     page.set_viewport_size({'width':width,'height':height})
-    page.set_content('<html><body style="margin:0;background:#0b1514">'+source+'</body></html>')
+    page.set_content('<html><body style="margin:0;background:#ffffff">'+source+'</body></html>')
     page.evaluate('document.getAnimations().forEach(a=>a.pause())')
     rendered=[]
     for frame in range(frames):
@@ -31,8 +31,8 @@ def make_gif(page, name, width, height, duration, frames):
 def preview_html():
     import markdown
     source=(ROOT/'README.md').read_text(encoding='utf-8')
-    body=markdown.markdown(source,extensions=['tables','md_in_html'])
-    css='''*{box-sizing:border-box}body{margin:0;background:#0d1117;color:#e6edf3;font:15px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}main{max-width:1040px;margin:38px auto;padding:32px;border:1px solid #30363d;border-radius:8px}img{max-width:100%;height:auto;vertical-align:middle}p{margin:16px 0}h3{font-size:20px;margin:34px 0 18px;padding-bottom:12px;border-bottom:1px solid #30363d}a{color:#8bd8bf;text-decoration:none}code{background:#202b29;padding:3px 6px;border-radius:5px;font-size:12px}table{width:100%;border-collapse:collapse;margin:16px 0}td,th{border:1px solid #30363d;padding:16px;text-align:left}th{background:#151e1c}summary{cursor:pointer;color:#a3b8ac}details{font-size:13px}.preview-note{font-size:12px;color:#8b949e;margin:0 0 18px}.light{background:#fff;color:#1f2328}.light main,.light td,.light th,.light h3{border-color:#d0d7de}.light a{color:#09654e}.light code,.light th{background:#eff5f0}@media(max-width:600px){main{margin:0;padding:16px;border:0}td,th{padding:9px;font-size:12px}h3{font-size:18px}p[align=center] a img[height]{max-width:30%;height:auto}}'''
+    body=markdown.markdown(source,extensions=['tables','md_in_html','toc'])
+    css='''*{box-sizing:border-box}body{margin:0;background:#fff;color:#26364b;font:15px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}main{max-width:1040px;margin:30px auto;padding:32px;border:1px solid #e0e6ef;border-radius:8px}img{max-width:100%;height:auto;vertical-align:middle}img[align=right]{float:right;margin:0 0 16px 22px}br[clear=right]{clear:right}p{margin:16px 0}h2{font-size:23px;font-weight:600;margin:32px 0 18px;padding-bottom:10px;border-bottom:1px solid #e0e6ef}a{color:#386ad9;text-decoration:none}code{background:#f1f5fa;padding:3px 6px;border-radius:5px;font-size:12px}table{width:100%;border-collapse:collapse;margin:16px 0}td,th{border:1px solid #e0e6ef;padding:16px;text-align:left}summary{cursor:pointer;color:#5c7089}details{font-size:13px}.preview-note{font-size:12px;color:#728197;margin:0 0 18px}.dark{background:#0d1117;color:#e6edf3}.dark main,.dark td,.dark th,.dark h2{border-color:#30363d}.dark a{color:#8db3f3}.dark code{background:#202b3c}.dark summary{color:#adbed3}@media(max-width:600px){main{margin:0;padding:16px;border:0}td,th{padding:9px;font-size:12px}h2{font-size:20px}img[align=right]{margin-left:14px}p[align=center] a img[height]{max-width:28%;height:auto}}'''
     html='<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Abdelali Ferhan · GitHub profile preview</title><style>'+css+'</style><body><main><p class="preview-note">LOCAL README PREVIEW · GitHub controls final fonts and spacing</p>'+body+'</main></body></html>'
     (ROOT/'preview.html').write_text(html,encoding='utf-8')
 
@@ -47,8 +47,7 @@ def main():
         browser=p.chromium.launch(headless=True)
         page=browser.new_page(device_scale_factor=1)
         if not args.skip_gifs:
-            make_gif(page,'hero',1000,430,24000,192)
-            make_gif(page,'process',1000,152,8000,64)
+            make_gif(page,'hero',1000,320,8000,100)
         # Keep validation local; don't artificially increment the public view counter.
         def cached_badge(route):
             name='views.svg' if 'komarev.com' in route.request.url else 'followers.svg'
@@ -62,9 +61,10 @@ def main():
         page.goto((ROOT/'preview.html').as_uri())
         page.wait_for_timeout(500)
         page.screenshot(path=str(out/'desktop.png'),full_page=True)
-        page.evaluate("document.body.classList.add('light')")
         page.screenshot(path=str(out/'light.png'),full_page=True)
-        page.evaluate("document.body.classList.remove('light')")
+        page.evaluate("document.body.classList.add('dark')")
+        page.screenshot(path=str(out/'dark.png'),full_page=True)
+        page.evaluate("document.body.classList.remove('dark')")
         page.set_viewport_size({'width':390,'height':844})
         page.screenshot(path=str(out/'mobile.png'),full_page=True)
         overflow=page.evaluate('document.documentElement.scrollWidth > window.innerWidth')
@@ -78,7 +78,7 @@ def main():
         page.emulate_media(reduced_motion='reduce')
         page.wait_for_function("Array.from(document.querySelectorAll('picture img')).every(i=>i.complete && i.naturalWidth>0)")
         selected=page.locator('picture img[src$=".gif"]').evaluate_all('(imgs)=>imgs.map(i=>i.currentSrc)')
-        assert all('static.svg' in src for src in selected),selected
+        assert all('static.svg' in src or 'mobile.svg' in src for src in selected),selected
         print('Reduced-motion images verified.')
         browser.close()
 

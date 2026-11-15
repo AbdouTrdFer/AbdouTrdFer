@@ -1,10 +1,10 @@
-"""Original, editable vector artwork. No network, templates, or external assets."""
+"""Original light profile artwork. Motion stays in self-contained SVG/GIF assets."""
 from pathlib import Path
 from html import escape
 
 ROOT = Path(__file__).resolve().parents[1]
 ASSETS = ROOT / 'assets'
-BG, PANEL, LINE, INK, MUTED, MINT = '#0b1514', '#101f1c', '#263c35', '#eef5ee', '#a3b8ac', '#bdff83'
+INK, MUTED, BLUE, TEAL, PURPLE = '#203451', '#5c7089', '#386ad9', '#177c80', '#8063b9'
 
 def text(x, y, value, size=16, color=INK, weight=400, extra=''):
     return f'<text x="{x}" y="{y}" fill="{color}" font-size="{size}" font-weight="{weight}" {extra}>{escape(str(value))}</text>'
@@ -12,81 +12,110 @@ def text(x, y, value, size=16, color=INK, weight=400, extra=''):
 def svg(width, height, body, title):
     return f'''<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}" role="img" aria-labelledby="title">
 <title id="title">{escape(title)}</title>
-<style>text{{font-family:Arial,Helvetica,sans-serif}} .mono{{font-family:Consolas,monospace}} @media(prefers-reduced-motion:reduce){{*{{animation:none!important}}}}</style>
+<style>text{{font-family:Arial,Helvetica,sans-serif}}.mono{{font-family:Consolas,monospace}}@media(prefers-reduced-motion:reduce){{*{{animation:none!important}}}}</style>
 {body}</svg>'''
 
 def write(name, content):
     ASSETS.mkdir(parents=True, exist_ok=True)
-    (ASSETS / name).write_text(content, encoding='utf-8')
+    (ASSETS/name).write_text(content, encoding='utf-8')
+
+def still(content):
+    return content.replace('</style>', '*{animation:none!important}</style>')
 
 def build():
-    hero = f'''<defs>
-      <pattern id="grid" width="36" height="36" patternUnits="userSpaceOnUse"><path d="M 36 0 L 0 0 0 36" fill="none" stroke="{LINE}" stroke-width=".5"/></pattern>
-      <radialGradient id="glow"><stop stop-color="#29472d"/><stop offset="1" stop-color="{BG}"/></radialGradient>
-      <linearGradient id="cube" x2="1" y2="1"><stop stop-color="#c9ff98"/><stop offset="1" stop-color="#67b98e"/></linearGradient>
+    hero=f'''<defs>
+      <linearGradient id="paper" x2="1" y2="1"><stop stop-color="#f2f8ff"/><stop offset=".55" stop-color="#fcfcff"/><stop offset="1" stop-color="#f1faf8"/></linearGradient>
+      <linearGradient id="ribbon"><stop stop-color="#b8d9fb"/><stop offset=".52" stop-color="#d3cef5"/><stop offset="1" stop-color="#c6ece4"/></linearGradient>
     </defs>
-    <style>@keyframes orbit{{to{{transform:rotate(360deg)}}}}@keyframes breathe{{50%{{opacity:.3}}}}.orbit{{transform-origin:792px 207px;animation:orbit 24s linear infinite}}.reverse{{animation-direction:reverse;animation-duration:12s}}.pulse{{animation:breathe 4s ease-in-out infinite}}</style>
-    <rect width="1000" height="430" rx="20" fill="{BG}"/>
-    <circle cx="792" cy="207" r="207" fill="url(#glow)"/>
-    <path d="M608 20H980V410H608Z" fill="url(#grid)" opacity=".6"/>
-    <rect x=".5" y=".5" width="999" height="429" rx="20" fill="none" stroke="{LINE}"/>
-    <rect x="38" y="31" width="34" height="34" rx="10" fill="{MINT}"/>
-    {text(45,54,'af',20,BG,700)}{text(85,53,'ABDELALI FERHAN',13,INK,700,'letter-spacing="2"')}
-    <circle cx="758" cy="49" r="4" fill="{MINT}" class="pulse"/>
-    {text(772,53,'OPEN TO COLLABORATE',11,MUTED,400,'class="mono" letter-spacing="1"')}
-    {text(38,113,'FULL-STACK SOFTWARE ENGINEER',12,MINT,400,'class="mono" letter-spacing="1.6"')}
-    {text(35,180,'Thoughtful',60,INK,700,'letter-spacing="-2"')}
-    {text(35,246,'interfaces.',60,INK,700,'letter-spacing="-2"')}
-    {text(35,312,'Intelligent systems.',48,MINT,700,'letter-spacing="-1.8"')}
-    {text(38,350,'From the first interaction to the services behind it.',16,MUTED)}
-    <line x1="38" y1="378" x2="962" y2="378" stroke="{LINE}"/>
-    {text(38,405,'WEB APPLICATIONS  /  AI  /  DEVOPS',11,MUTED,400,'class="mono" letter-spacing="1.4"')}
-    {text(962,405,'@AbdouTrdFer',12,MINT,400,'class="mono" text-anchor="end"')}
-    <circle cx="792" cy="207" r="131" fill="none" stroke="{LINE}"/>
-    <circle cx="792" cy="207" r="97" fill="none" stroke="#3e5c46" stroke-dasharray="3 8"/>
-    <g class="orbit"><ellipse cx="792" cy="207" rx="151" ry="58" fill="none" stroke="#92be87" stroke-width="1.5" transform="rotate(-33 792 207)"/><circle cx="919" cy="125" r="7" fill="{MINT}"/></g>
-    <g class="orbit reverse"><ellipse cx="792" cy="207" rx="151" ry="58" fill="none" stroke="#588879" transform="rotate(38 792 207)"/><circle cx="671" cy="113" r="5" fill="#8acdcc"/></g>
-    <path d="M792 142L853 177V247L792 282L731 247V177Z" fill="{PANEL}" stroke="{MINT}" stroke-width="1.5"/>
-    <path d="M792 142L853 177L792 213L731 177Z" fill="url(#cube)"/>
-    <path d="M792 213V282M731 177L792 213L853 177" fill="none" stroke="{MINT}" stroke-width="1.5"/>
-    {text(748,236,'a',29,MINT,700)}{text(809,236,'f',29,MINT,700)}
-    <rect x="687" y="324" width="210" height="26" rx="13" fill="{PANEL}" stroke="{LINE}"/>
-    {text(792,341,'CURIOUS BY DEFAULT',10,MUTED,400,'text-anchor="middle" class="mono" letter-spacing="2"')}
+    <style>@keyframes drift{{50%{{transform:translate(9px,-5px)}}}}@keyframes tide{{50%{{transform:translateY(7px)}}}}.drift{{animation:drift 8s ease-in-out infinite}}.tide{{animation:tide 8s ease-in-out infinite}}</style>
+    <rect width="1000" height="320" rx="22" fill="url(#paper)"/>
+    <path d="M714 0H1000V123Q931 151 872 95T714 0Z" fill="#e4e7fb"/>
+    <path class="tide" d="M0 260Q178 213 360 273T728 271T1000 258V320H0Z" fill="url(#ribbon)" opacity=".65"/>
+    <path d="M0 286Q229 255 436 296T1000 279V320H0Z" fill="#fff" opacity=".55"/>
+    <circle cx="90" cy="82" r="28" fill="#e4effd"/>
+    {text(90,90,'af.',24,BLUE,700,'text-anchor="middle" letter-spacing="-1"')}
+    {text(133,77,'HELLO, WORLD',12,MUTED,400,'letter-spacing="2.2" class="mono"')}
+    {text(133,99,'A little curiosity. A lot of building.',13,MUTED)}
+    {text(60,163,'Abdelali Ferhan',65,INK,700,'letter-spacing="-2.4"')}
+    {text(63,206,'Full-stack developer',25,BLUE,600)}
+    {text(63,237,'Web experiences  ·  Applied AI  ·  DevOps',16,MUTED)}
+    <g class="drift" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="758" y="91" width="170" height="119" rx="14" fill="#fff" stroke="#cad8ed" stroke-width="1.5" transform="rotate(-7 843 150)"/>
+      <path d="M766 117L921 98" stroke="#e5ecf7"/>
+      <circle cx="779" cy="105" r="2.5" fill="#b3c6e9" stroke="none"/><circle cx="790" cy="104" r="2.5" fill="#c4b7e5" stroke="none"/><circle cx="801" cy="103" r="2.5" fill="#95cec4" stroke="none"/>
+      <path d="M809 147l-16 17 19 12M876 138l19 12-15 18M852 133l-11 49" stroke="{BLUE}" stroke-width="4"/>
+      <rect x="883" y="183" width="56" height="46" rx="12" fill="#e6f6f1" stroke="#b8dfd3"/>
+      <path d="M898 205l8 7 16-18" stroke="{TEAL}" stroke-width="3"/>
+    </g>
+    <g stroke="#97afd6" stroke-width="1.5"><path d="M937 64v14M930 71h14M717 210v12M711 216h12"/></g>
+    <circle cx="739" cy="85" r="3" fill="#9ac7c1"/><circle cx="966" cy="173" r="3" fill="#b8a6de"/>
     '''
-    write('hero.svg',svg(1000,430,hero,'Abdelali Ferhan — Thoughtful interfaces. Intelligent systems.'))
-    write('hero-static.svg',svg(1000,430,hero.replace('.orbit{','.orbit{animation:none!important;').replace('.pulse{','.pulse{animation:none!important;'),'Abdelali Ferhan — Full-stack software engineer'))
-    process = f'<rect width="1000" height="152" rx="16" fill="{BG}"/><rect x=".5" y=".5" width="999" height="151" rx="16" fill="none" stroke="{LINE}"/>'
-    process += '<style>@keyframes travel{to{stroke-dashoffset:-800}}.signal{animation:travel 8s linear infinite}</style>'
-    process += f'<path d="M90 54H910" stroke="{LINE}" stroke-width="2"/><path class="signal" d="M90 54H910" stroke="{MINT}" stroke-width="2" stroke-dasharray="30 170"/>'
-    for i,(label,sub) in enumerate([('Understand','Start with the problem'),('Design','Make the experience clear'),('Build','Connect the moving parts'),('Improve','Learn from what ships')]):
-        x=128+i*248
-        process+=f'<circle cx="{x}" cy="54" r="18" fill="{PANEL}" stroke="{MINT}"/>'+text(x,59,f'0{i+1}',12,MINT,400,'text-anchor="middle" class="mono"')+text(x,99,label,19,INK,700,'text-anchor="middle"')+text(x,125,sub,12,MUTED,400,'text-anchor="middle"')
-    write('process.svg',svg(1000,152,process,'Understand, design, build, improve'))
-    write('process-static.svg',svg(1000,152,process.replace('.signal{','.signal{animation:none!important;'),'Understand, design, build, improve'))
-    for name,label,width in [('portfolio','VIEW PORTFOLIO  ↗',190),('linkedin','LINKEDIN  ↗',145),('email',"LET’S TALK  ↗",150)]:
-        body=f'<rect x=".5" y=".5" width="{width-1}" height="35" rx="8" fill="{MINT if name=="portfolio" else PANEL}" stroke="{LINE}"/>'+text(width/2,23,label,11,BG if name=='portfolio' else INK,700,'text-anchor="middle" letter-spacing="1"')
-        write(f'link-{name}.svg',svg(width,36,body,label))
-    for i,(name,title,subtitle,color,kind) in enumerate([
-        ('ardmarket','ArdMarket','AI MEETS AGRICULTURE',MINT,'fields'),
-        ('scaler','Microservice Scaler','INFRASTRUCTURE THAT ADAPTS','#95d8d2','servers'),
-        ('lasorder','LasOrder','FROM SCAN TO SERVICE','#f2c891','qr'),
-        ('learning','E-learning Platform','A CLEARER PATH TO LEARNING','#c6b9f2','book')]):
+    write('hero.svg',svg(1000,320,hero,'Abdelali Ferhan — Full-stack developer, applied AI and DevOps'))
+    write('hero-static.svg',svg(1000,320,still(hero),'Abdelali Ferhan — Full-stack developer, applied AI and DevOps'))
+    mobile=f'''<defs><linearGradient id="paper" x2="1" y2="1"><stop stop-color="#eff6ff"/><stop offset="1" stop-color="#f5f3fc"/></linearGradient></defs>
+    <rect width="480" height="270" rx="18" fill="url(#paper)"/>
+    <path d="M0 226Q130 189 262 230T480 218V270H0Z" fill="#cfe6ec" opacity=".6"/>
+    <circle cx="42" cy="42" r="20" fill="#e1ebfc"/>{text(42,49,'af.',18,BLUE,700,'text-anchor="middle"')}
+    {text(75,47,'HELLO, WORLD',11,MUTED,400,'letter-spacing="2"')}
+    {text(24,104,'Abdelali',46,INK,700,'letter-spacing="-1.5"')}
+    {text(24,152,'Ferhan',46,INK,700,'letter-spacing="-1.5"')}
+    {text(24,190,'Full-stack developer',22,BLUE,600)}
+    {text(24,218,'Web experiences · Applied AI · DevOps',13,MUTED)}
+    <path d="M387 104l-16 16 16 16M423 104l16 16-16 16M411 96l-12 47" fill="none" stroke="#7b97d5" stroke-width="3" stroke-linecap="round"/>
+    '''
+    write('hero-mobile.svg',svg(480,270,mobile,'Abdelali Ferhan — Full-stack developer'))
+    for name,label,width,icon in [('portfolio','Portfolio',150,'window'),('linkedin','LinkedIn',145,'in'),('email',"Let’s talk",145,'mail')]:
+        fill='#386ad9' if name=='portfolio' else '#f4f7fc'
+        color='#fff' if name=='portfolio' else BLUE
+        body=f'<rect x=".75" y=".75" width="{width-1.5}" height="38.5" rx="19" fill="{fill}" stroke="{fill if name=="portfolio" else "#dce5f2"}" stroke-width="1.5"/>'
+        if icon=='window': body+=f'<rect x="20" y="13" width="16" height="13" rx="2" fill="none" stroke="{color}" stroke-width="1.5"/><path d="M20 17h16" stroke="{color}"/>'
+        elif icon=='in': body+=text(21,25,'in',16,color,700)
+        else: body+=f'<rect x="19" y="13" width="17" height="13" rx="2" fill="none" stroke="{color}" stroke-width="1.5"/><path d="M20 14l7 6 8-6" fill="none" stroke="{color}" stroke-width="1.5"/>'
+        body+=text(47,25,label,14,color,600)+text(width-22,24,'↗',14,color)
+        write(f'link-{name}.svg',svg(width,40,body,label))
+    intro=f'''<defs><linearGradient id="wash"><stop stop-color="#eef6ff"/><stop offset="1" stop-color="#f0eefb"/></linearGradient></defs>
+    <ellipse cx="150" cy="129" rx="133" ry="108" fill="url(#wash)"/>
+    <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M29 183l120 48 128-54-123-46Z" fill="#e5ecf7" stroke="#c8d8ee"/>
+      <path d="M65 70l132-24 12 105-133 24Z" fill="#fff" stroke="#91aed9" stroke-width="2"/>
+      <path d="M69 89l132-24" stroke="#d5e2f2"/>
+      <circle cx="80" cy="80" r="2" fill="#a4b9dc"/><circle cx="89" cy="78" r="2" fill="#c3b7dd"/>
+      <path d="M91 110l26-5M91 122l48-8M91 134l35-6M91 146l57-10" stroke="#82a8df" stroke-width="3"/>
+      <rect x="148" y="100" width="34" height="32" rx="5" fill="#e7f5f1" stroke="#c0e3d7"/>
+      <path d="M157 116l6 5 11-14" stroke="{TEAL}" stroke-width="2"/>
+      <path d="M138 164l-1 25M116 195l43-8M86 188l63 24 49-20-62-22Z" fill="#f6f8fc" stroke="#b2c8e4"/>
+      <path d="M224 190v-36M222 169c-22-1-17-22-17-22s21 0 17 22ZM226 177c19-3 20-22 20-22s-23 2-20 22Z" fill="#b7ddd1" stroke="#82bbaa"/>
+      <path d="M211 186h28l-4 24h-19Z" fill="#e5e0f3" stroke="#beb0d7"/>
+      <path d="M231 61v14M224 68h14M42 121v10M37 126h10" stroke="#a0b6db"/>
+    </g>'''
+    write('workbench.svg',svg(300,250,intro,'An original illustration of a light, open developer workbench'))
+    for i,(name,title,subtitle,color,pale,kind) in enumerate([
+        ('ardmarket','ArdMarket','AI + AGRICULTURE',TEAL,'#ecf8f3','fields'),
+        ('scaler','Microservice Scaler','CLOUD + INFRASTRUCTURE',BLUE,'#eef4ff','servers'),
+        ('lasorder','LasOrder','WEB + CUSTOMER EXPERIENCE','#b87338','#fff6eb','qr'),
+        ('learning','E-learning Platform','WEB + EDUCATION',PURPLE,'#f5f0fc','book')]):
         art=''
         if kind=='fields':
-            for y in range(30,111,20): art+=f'<path d="M310 {y+36}Q345 {y-20} 425 {y+5}" fill="none" stroke="{color}" stroke-width="2"/>'
+            for y in range(25,86,16): art+=f'<path d="M332 {y+20}Q361 {y-10} 412 {y+3}" fill="none" stroke="{color}" stroke-width="1.8"/>'
         elif kind=='servers':
-            for x,y in [(310,40),(367,26),(367,81)]: art+=f'<rect x="{x}" y="{y}" width="44" height="34" rx="5" fill="none" stroke="{color}"/><circle cx="{x+10}" cy="{y+12}" r="3" fill="{color}"/><path d="M{x+19} {y+12}h16M{x+9} {y+24}h26" stroke="{color}"/>'
-            art+=f'<path d="M354 57h6v-14h7M360 57v41h7" fill="none" stroke="{color}"/>'
+            for x,y in [(328,45),(373,25),(373,72)]: art+=f'<rect x="{x}" y="{y}" width="36" height="27" rx="5" fill="white" stroke="{color}"/><circle cx="{x+8}" cy="{y+10}" r="2" fill="{color}"/><path d="M{x+16} {y+10}h12M{x+8} {y+19}h20" stroke="{color}"/>'
+            art+=f'<path d="M364 58h4V39h5M368 58v27h5" fill="none" stroke="{color}"/>'
         elif kind=='qr':
-            for x,y in [(315,28),(368,28),(315,81)]:art+=f'<rect x="{x}" y="{y}" width="32" height="32" rx="4" fill="none" stroke="{color}" stroke-width="3"/><rect x="{x+9}" y="{y+9}" width="14" height="14" rx="2" fill="{color}"/>'
-            art+=f'<path d="M368 81h14v14h18v18h-32v-12" fill="none" stroke="{color}" stroke-width="5"/>'
+            for x,y in [(333,28),(378,28),(333,73)]:art+=f'<rect x="{x}" y="{y}" width="27" height="27" rx="4" fill="none" stroke="{color}" stroke-width="2"/><rect x="{x+8}" y="{y+8}" width="11" height="11" rx="2" fill="{color}"/>'
+            art+=f'<path d="M378 73h12v12h15v15h-27v-10" fill="none" stroke="{color}" stroke-width="4"/>'
         else:
-            art+=f'<path d="M357 43Q330 25 306 38V103Q332 90 357 108Q382 90 408 103V38Q381 25 357 43V108M318 54l25 5M318 68l25 5M371 59l25-5M371 73l25-5" fill="none" stroke="{color}" stroke-width="2"/>'
-        body=f'<rect width="440" height="170" rx="12" fill="{BG}"/><path d="M290 0V170" stroke="{LINE}"/>'+text(22,29,f'0{i+1} / SELECTED WORK',10,color,400,'class="mono" letter-spacing="1"')+text(22,91,title,23,INK,700)+text(22,121,subtitle,9,MUTED,400,'class="mono" letter-spacing=".6"')+art
-        write(f'project-{name}.svg',svg(440,170,body,title+' — '+subtitle))
-    footer=f'<rect width="1000" height="90" rx="14" fill="{BG}"/><path d="M30 45H275M725 45H970" stroke="{LINE}"/>'+text(500,40,'KEEP LEARNING. KEEP BUILDING.',13,MINT,400,'text-anchor="middle" class="mono" letter-spacing="2"')+text(500,63,'Abdelali Ferhan / @AbdouTrdFer',11,MUTED,400,'text-anchor="middle"')
-    write('footer.svg',svg(1000,90,footer,'Keep learning. Keep building.'))
-    print('Built original SVG artwork.')
+            art+=f'<path d="M370 41Q348 26 326 37V93Q349 83 370 98Q391 83 413 93V37Q391 26 370 41V98M337 50l21 5M337 63l21 5M382 55l21-5M382 68l21-5" fill="none" stroke="{color}" stroke-width="1.8"/>'
+        body=f'<rect x=".5" y=".5" width="439" height="129" rx="14" fill="{pale}" stroke="{pale}"/>'+text(22,35,subtitle,10,color,600,'letter-spacing="1.1"')+text(22,77,title,23,INK,700,'letter-spacing="-.5"')+text(22,105,f'0{i+1}  /  SELECTED PROJECT',9,MUTED,400,'letter-spacing="1"')+art
+        write(f'project-{name}.svg',svg(440,130,body,title+' — '+subtitle))
+    divider='<defs><linearGradient id="line"><stop stop-color="#d7e9f9"/><stop offset=".5" stop-color="#d8d0ee"/><stop offset="1" stop-color="#c8e9df"/></linearGradient></defs><rect y="11" width="1000" height="2" rx="1" fill="url(#line)"/>'
+    write('divider.svg',svg(1000,24,divider,'Section divider'))
+    footer=f'''<defs><linearGradient id="wash"><stop stop-color="#e9f4ff"/><stop offset=".55" stop-color="#f3effb"/><stop offset="1" stop-color="#eaf7f2"/></linearGradient></defs>
+    <path d="M0 27Q200 0 430 26T1000 17V120H0Z" fill="url(#wash)"/>
+    {text(500,70,'Thanks for stopping by.',27,INK,600,'text-anchor="middle" letter-spacing="-.5"')}
+    {text(500,98,'Stay curious. Build something useful.',14,MUTED,400,'text-anchor="middle"')}
+    '''
+    write('footer.svg',svg(1000,120,footer,'Thanks for stopping by. Stay curious. Build something useful.'))
+    print('Built original light-profile artwork.')
 
-if __name__ == '__main__':
+if __name__=='__main__':
     build()

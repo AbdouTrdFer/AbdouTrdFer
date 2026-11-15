@@ -1,34 +1,35 @@
-# Design notes — Abdelali Ferhan
+# Design notes — the light edition
 
-An engineering studio identity: deep green-black, warm white, lime, and restrained secondary colors. The original AF monogram sits inside an orbital system: interfaces and infrastructure as connected parts of one product. Motion stays in two deliberate places, leaving the biography and project descriptions easy to read.
+A light, open profile for Abdelali Ferhan: white surfaces, soft blue, lavender, mint, and a little warm sand. The banner leads with his name and role. The illustration and slow floating motion suggest a developer's workbench. Whitespace, readable copy, and recognizable technology icons make the page easy to scan.
 
-The sequence is identity → approach → selected work → toolkit → evidence → contact. Content uses the existing profile screenshot, the local portfolio, and verified public repository links. No designer job title, professional tenure, client result, or expertise score has been invented.
+The sequence is introduction → about → toolkit → selected work → activity → contact. Short project descriptions explain the value of each build; contact links appear near the introduction and at the end. The profile uses ordinary GitHub Markdown/HTML, so the layout does not depend on scripts or custom page CSS.
 
 ## Research and inspiration
 
-- [Awesome GitHub Profile README](https://github.com/abhisheknaiidu/awesome-github-profile-readme): surveyed its range of minimal, animated, and data-oriented profiles.
-- [DenverCoder1's profile source](https://github.com/DenverCoder1/DenverCoder1): clear role introduction, animation, discoverable contact links, and project emphasis. These structural ideas informed the hierarchy; its assets and text were not copied.
-- [ryo-ma's profile](https://github.com/ryo-ma/ryo-ma): contribution and project metrics as visual evidence. This design uses its own dashboard rather than a stack of differently styled widgets.
-- [Pretty GitHub](https://github.com/Jenesyx/pretty-github): consistent artwork and editable, repository-owned profile assets.
+- [Bosaj's README source](https://github.com/Bosaj/Bosaj/blob/main/README.md): inspected the actual source and its banner, navigation, biography, technology icons, and analytics. Those structural ideas inform this profile's hierarchy. Its personal history, artwork, banner, and writing are not reused.
+- [Awesome GitHub Profile README](https://github.com/abhisheknaiidu/awesome-github-profile-readme): surveyed clean and animated developer profiles.
+- [DenverCoder1](https://github.com/DenverCoder1/DenverCoder1): a clear introduction and easy-to-find contact links alongside activity data.
+- [Skill Icons](https://github.com/tandpfun/skill-icons): the light technology-logo rows are downloaded and hosted locally. The accompanying license is in `assets/skill-icons-LICENSE.txt`.
 
-All hero graphics, project illustrations, buttons, process art, and dashboard artwork in this package are original code-generated vectors. The GIFs are rendered from that source. There are no borrowed character GIFs, stock illustrations, or copied banners.
+All banner artwork, workspace illustration, project illustrations, buttons, dividers, footer, and dashboard graphics are original code-generated vectors. `scripts/build_art.py` regenerates the original artwork. `scripts/render_preview.py` renders the banner as a GIF. The technology logos are the credited third-party exception.
 
-## Data and platform references
+## Data and accessibility
 
-- [GitHub profile documentation](https://docs.github.com/en/account-and-profile/concepts/personal-profile): profile README and supported images/GIFs.
-- [GitHub contribution reference](https://docs.github.com/en/account-and-profile/reference/profile-contributions-reference): contribution criteria and visibility.
-- [GraphQL user reference](https://docs.github.com/en/graphql/reference/users): contribution collection and calendar fields.
-- [REST events documentation](https://docs.github.com/en/rest/activity/events): public push-event feed and its retention/cap limits.
-- [Workflow token documentation](https://docs.github.com/en/actions/tutorials/authenticate-with-github_token): automatic token and scoped permissions.
-- [Komarev views counter](https://github.com/antonkomarev/github-profile-views-counter): the external view badge.
+- Profile facts and project descriptions come from the existing profile and local portfolio. Education and location use the portfolio's existing information. No professional tenure, employer, or performance claim is invented.
+- The dashboard retains GitHub's reported aggregate, breakdown, and daily series. GitHub may return a small discrepancy between its total and the sum of daily cells; the renderer preserves the source data rather than adding activity.
+- Push events have a separate limited window and are never added to contribution totals.
+- Key information remains selectable text, with image alt text for illustrations and stats.
+- Static artwork is selected for reduced motion. Phone screens receive a reflowed name banner and a taller dashboard.
+- White image surfaces remain legible in both GitHub themes. The local preview opens in light mode and also checks dark mode.
+- Project art communicates a category; it is not an application screenshot.
 
-## Visual and accessibility choices
+## Platform references
 
-- Artwork uses a solid background so it remains legible in both GitHub themes.
-- Essential profile information and project descriptions remain selectable text.
-- Images have alt text; static alternatives are provided for reduced motion.
-- The stats snapshot is linked to the actual GitHub overview and shows its date range and freshness.
-- Project illustrations communicate the project category; they are not presented as application screenshots.
-- The initial real snapshot deliberately leaves authenticated-only breakdowns unavailable. Test fixtures are confined to tests, never used as profile data.
+- [GitHub profiles](https://docs.github.com/en/account-and-profile/concepts/personal-profile)
+- [Contribution criteria](https://docs.github.com/en/account-and-profile/reference/profile-contributions-reference)
+- [GraphQL users and contribution collections](https://docs.github.com/en/graphql/reference/users)
+- [Public events and their limits](https://docs.github.com/en/rest/activity/events)
+- [Workflow token permissions](https://docs.github.com/en/actions/tutorials/authenticate-with-github_token)
+- [Komarev profile views](https://github.com/antonkomarev/github-profile-views-counter)
 
-The previews approximate GitHub's content column. They are not screenshots of a published GitHub profile. The daily authenticated workflow must be verified after installation in the actual profile repository.
+The local preview approximates GitHub's content column. The published profile must also be inspected because GitHub controls spacing, image caching, and Markdown rendering.

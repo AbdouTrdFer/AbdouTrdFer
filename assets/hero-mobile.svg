@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="270" viewBox="0 0 480 270" role="img" aria-labelledby="title">
+<title id="title">Abdelali Ferhan — Full-stack developer</title>
+<style>text{font-family:Arial,Helvetica,sans-serif}.mono{font-family:Consolas,monospace}@media(prefers-reduced-motion:reduce){*{animation:none!important}}</style>
+<defs><linearGradient id="paper" x2="1" y2="1"><stop stop-color="#eff6ff"/><stop offset="1" stop-color="#f5f3fc"/></linearGradient></defs>
+    <rect width="480" height="270" rx="18" fill="url(#paper)"/>
+    <path d="M0 226Q130 189 262 230T480 218V270H0Z" fill="#cfe6ec" opacity=".6"/>
+    <circle cx="42" cy="42" r="20" fill="#e1ebfc"/><text x="42" y="49" fill="#386ad9" font-size="18" font-weight="700" text-anchor="middle">af.</text>
+    <text x="75" y="47" fill="#5c7089" font-size="11" font-weight="400" letter-spacing="2">HELLO, WORLD</text>
+    <text x="24" y="104" fill="#203451" font-size="46" font-weight="700" letter-spacing="-1.5">Abdelali</text>
+    <text x="24" y="152" fill="#203451" font-size="46" font-weight="700" letter-spacing="-1.5">Ferhan</text>
+    <text x="24" y="190" fill="#386ad9" font-size="22" font-weight="600" >Full-stack developer</text>
+    <text x="24" y="218" fill="#5c7089" font-size="13" font-weight="400" >Web experiences · Applied AI · DevOps</text>
+    <path d="M387 104l-16 16 16 16M423 104l16 16-16 16M411 96l-12 47" fill="none" stroke="#7b97d5" stroke-width="3" stroke-linecap="round"/>
+    </svg>
